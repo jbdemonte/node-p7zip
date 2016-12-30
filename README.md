@@ -1,5 +1,5 @@
-7za
-===
+Node p7zip wrapper
+==================
 
 A node wrapper for 7z including the latest version of `7za`.
 
@@ -13,14 +13,14 @@ Installation
 ------------
 
 ```
-npm install --save 7za
+npm install --save p7zip
 ```
 
 
 Usage
 -----
 ```
-var p7zip = require('7za');
+var p7zip = require('p7zip');
 
 p7zip
   .add('test.7z', '*.js')
@@ -47,7 +47,7 @@ p7zip
 Promise library use node Promise, but may be replaced:
 
 ```
-var p7zip = require('7za');
+var p7zip = require('p7zip');
 
 p7zip.Promise = require('bluebird');
 ```
