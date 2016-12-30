@@ -14,11 +14,9 @@ function load(name) {
     if (callback) {
       promise
         .then(function (result) {
-          console.log('AA', result);
           callback(null, result);
         })
         .catch(function (err) {
-          console.log('catch ', err);
           callback(err);
         });
     } else {
