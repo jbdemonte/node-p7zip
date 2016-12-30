@@ -1,17 +1,30 @@
 {
   "name": "7za",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A node wrapper for 7z including latest version of 7za",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "node scripts/install.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jbdemonte/node-7za.git"
+  },
   "author": {
     "name": "Jean-Baptiste DEMONTE",
     "email": "jbdemonte@gmail.com",
     "url": "http://jb.demonte.fr"
   },
+  "keywords": [
+    "node",
+    "7z",
+    "7za",
+    "p7zip",
+    "7zip",
+    "wrapper",
+    "bin"
+  ],
   "license": "MIT",
   "dependencies": {
     "decompress": "^4.0.0",

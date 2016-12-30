@@ -20,9 +20,9 @@ npm install --save 7za
 Usage
 -----
 ```
-var Zip = require('7za');
+var p7zip = require('7za');
 
-Zip
+p7zip
   .add('test.7z', '*.js')
   .then(function (count) {
     console.log('File added: ', count);
@@ -47,16 +47,16 @@ Zip
 Promise library use node Promise, but may be replaced:
 
 ```
-var Zip = require('7za');
+var p7zip = require('7za');
 
-Zip.Promise = require('bluebird');
+p7zip.Promise = require('bluebird');
 ```
 
 
 API
 ---
 
-### Zip.add
+### p7zip.add
 
 **Arguments**
  * `archive` The archive path.
@@ -66,7 +66,7 @@ API
  * `count` The file count added.
 
 
-### Zip.delete
+### p7zip.delete
 
 **Arguments**
  * `archive` The archive path.
@@ -76,7 +76,7 @@ API
  * none
 
 
-### Zip.extract
+### p7zip.extract
 
 **Arguments**
  * `archive` The archive path.
@@ -87,7 +87,7 @@ API
  * `files` Array of all the extracted files.
 
 
-### Zip.list
+### p7zip.list
 
 **Arguments**
  * `archive` The archive path.
@@ -111,7 +111,7 @@ API
  * `data.files[].size`          number
 
 
-### Zip.rename
+### p7zip.rename
 
 **Arguments**
  * `archive` The archive path.
@@ -120,7 +120,7 @@ API
 **Returns**
  * none
 
-### Zip.update
+### p7zip.update
 
 **Arguments**
  * `archive` Path to the archive.
