@@ -1,6 +1,6 @@
 {
   "name": "p7zip",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "A node wrapper for 7z including latest version of 7za",
   "main": "index.js",
   "scripts": {
