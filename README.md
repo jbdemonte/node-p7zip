@@ -81,10 +81,11 @@ API
 **Arguments**
  * `archive` The archive path.
  * `destination` The extraction path (optional).
+ * `fileFilter` File filters to extract (string or array of string, optional).
  * `full` Extract with full paths (optional, default=false).
 
 **Returns**
- * `files` Array of all the extracted files.
+ * none
 
 
 ### p7zip.list
