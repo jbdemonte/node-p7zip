@@ -61,6 +61,7 @@ API
 **Arguments**
  * `archive` The archive path.
  * `files` The file list to add (string or array of string).
+ * `switches` Switches (array of string).
 
 **Returns**
  * `count` The file count added.
@@ -71,6 +72,7 @@ API
 **Arguments**
  * `archive` The archive path.
  * `files` The file list to delete (string or array of string).
+ * `switches` Switches (array of string).
 
 **Returns**
  * none
@@ -78,11 +80,14 @@ API
 
 ### p7zip.extract
 
+Default overwrite mode is set to "Overwrite All existing files without prompt" using switch `-aoa`.
+
 **Arguments**
  * `archive` The archive path.
  * `destination` The extraction path (optional).
  * `fileFilter` File filters to extract (string or array of string, optional).
- * `full` Extract with full paths (optional, default=false).
+ * `switches` Switches (array of string).
+ * `full` Extract with full paths (optional, default=true).
 
 **Returns**
  * none
@@ -92,6 +97,7 @@ API
 
 **Arguments**
  * `archive` The archive path.
+ * `switches` Switches (array of string).
 
 **Returns**
  * `data`           object
@@ -117,6 +123,7 @@ API
 **Arguments**
  * `archive` The archive path.
  * `files` Hashmap of the file list to rename ({oldName: newName, ...}.
+ * `switches` Switches (array of string).
 
 **Returns**
  * none
@@ -126,6 +133,7 @@ API
 **Arguments**
  * `archive` Path to the archive.
  * `files` The file list to update (string or array of string).
+ * `switches` Switches (array of string).
 
 **Returns**
  * `count` The file count updated.
