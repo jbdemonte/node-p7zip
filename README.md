@@ -109,6 +109,7 @@ Default overwrite mode is set to "Overwrite All existing files without prompt" u
  * `data.method`        string
  * `data.solid`         string
  * `data.blocks`        number
+ * `data.directories`   array (same as `data.files`)
  * `data.files`         array
 
  * `data.files[].attr`          string
