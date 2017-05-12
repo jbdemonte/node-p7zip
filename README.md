@@ -27,7 +27,9 @@ p7zip
   .then(function (count) {
     console.log('File added: ', count);
   })
-  .list('test.7z')
+  .then(function () {
+    return p7zip.list('test.7z');
+  })
   .then(function (data) {
     console.log('Path: ', data.path);
     console.log('Type: ', data.type);
