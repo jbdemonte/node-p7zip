@@ -1,4 +1,4 @@
-var tools = require('./lib/tools');
+const tools = require('./lib/tools');
 
 exports.add = require('./lib/add');
 exports.delete = require('./lib/delete');
@@ -8,16 +8,16 @@ exports.rename = require('./lib/rename');
 exports.update = require('./lib/update');
 
 
-['add', 'delete', 'extract', 'list', 'rename', 'update'].forEach(function (name) {
+['add', 'delete', 'extract', 'list', 'rename', 'update'].forEach((name) => {
   exports[name] = tools.cb_decorate(exports[name]);
 });
 
 
 Object.defineProperty(exports, 'Promise', {
-  get: function () {
+  get() {
     return tools.Promise;
   },
-  set: function (cls) {
+  set(cls) {
     tools.Promise = cls;
-  }
+  },
 });

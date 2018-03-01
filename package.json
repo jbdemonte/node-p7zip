@@ -29,5 +29,10 @@
   "dependencies": {
     "decompress": "^4.0.0",
     "node-wget": "^0.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.7.0"
   }
 }
