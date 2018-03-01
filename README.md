@@ -1,7 +1,18 @@
 Node p7zip wrapper
 ==================
 
-A node wrapper for 7z including the latest version of `7za`.
+[![travis build](https://img.shields.io/travis/jbdemonte/node-p7zip.svg)](https://travis-ci.org/jbdemonte/node-p7zip)
+[![Coverage Status](https://coveralls.io/repos/github/jbdemonte/node-p7zip/badge.svg?branch=master)](https://coveralls.io/github/jbdemonte/node-p7zip?branch=master)
+[![NPM Version](https://img.shields.io/npm/v/p7zip.svg)](https://www.npmjs.com/package/p7zip)
+![node (tag)](https://img.shields.io/node/v/p7zip/latest.svg)
+
+
+A node wrapper for p7zip including the latest version of `7za`.
+
+Limitation
+----------
+
+Because p7zip is a portage of 7-zip for linux systems, this package is not usable on Windows.
 
 Description
 -----------
@@ -63,7 +74,7 @@ API
 **Arguments**
  * `archive` The archive path.
  * `files` The file list to add (string or array of string).
- * `switches` Switches (array of string).
+ * `switches` Switches (string or array of string).
 
 **Returns**
  * `count` The file count added.
@@ -74,7 +85,7 @@ API
 **Arguments**
  * `archive` The archive path.
  * `files` The file list to delete (string or array of string).
- * `switches` Switches (array of string).
+ * `switches` Switches (string or array of string).
 
 **Returns**
  * none
@@ -88,7 +99,7 @@ Default overwrite mode is set to "Overwrite All existing files without prompt" u
  * `archive` The archive path.
  * `destination` The extraction path (optional).
  * `fileFilter` File filters to extract (string or array of string, optional).
- * `switches` Switches (array of string).
+ * `switches` Switches (string or array of string).
  * `full` Extract with full paths (optional, default=true).
 
 **Returns**
@@ -99,7 +110,7 @@ Default overwrite mode is set to "Overwrite All existing files without prompt" u
 
 **Arguments**
  * `archive` The archive path.
- * `switches` Switches (array of string).
+ * `switches` Switches (string or array of string).
 
 **Returns**
  * `data`           object
@@ -126,7 +137,7 @@ Default overwrite mode is set to "Overwrite All existing files without prompt" u
 **Arguments**
  * `archive` The archive path.
  * `files` Hashmap of the file list to rename ({oldName: newName, ...}.
- * `switches` Switches (array of string).
+ * `switches` Switches (string or array of string).
 
 **Returns**
  * none
@@ -136,7 +147,7 @@ Default overwrite mode is set to "Overwrite All existing files without prompt" u
 **Arguments**
  * `archive` Path to the archive.
  * `files` The file list to update (string or array of string).
- * `switches` Switches (array of string).
+ * `switches` Switches (string or array of string).
 
 **Returns**
  * `count` The file count updated.

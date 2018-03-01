@@ -1,8 +1,12 @@
 {
   "name": "p7zip",
-  "version": "2.3.0",
+  "version": "3.0.0",
   "description": "A node wrapper for 7z including latest version of 7za",
   "main": "index.js",
+  "os" : [ "darwin", "linux" ],
+  "engines": {
+    "node": ">= 7.0.0"
+  },
   "scripts": {
     "test": "jest",
     "install": "node scripts/install.js"
