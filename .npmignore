@@ -1,7 +1,10 @@
-bin/
-node_modules/
-.idea/
+bin
+node_modules
+.idea
 .gitignore
-.jshintrc
+.eslintrc
 .npmignore
 .DS_Store
+.travis.yml
+coverage
+tests
