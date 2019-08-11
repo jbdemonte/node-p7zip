@@ -1,77 +1,63 @@
-var version = '16.02';
-var url = 'https://github.com/jbdemonte/p7zip/archive/';
-var bin = 'bin/7za';
+const version = '16.02';
+const url = 'https://github.com/jbdemonte/p7zip/archive/';
+const bin = 'bin/7za';
 
-var decompress = require('decompress');
-var fs = require('fs');
-var path = require('path');
-var spawn = require('child_process').spawn;
+const decompress = require('decompress');
+const fs = require('fs');
+const path = require('path');
+const request = require('request');
+const spawn = require('child_process').spawn;
 
-if (!fs.existsSync(bin)) {
-  wget(url + version + '.zip')
-    .then(function () {
-      console.log('Decompress ' + version + '.zip');
-      return decompress(version + '.zip', 'build');
-    })
-    .then(function () {
-      return make('build/p7zip-' + version);
-    })
-    .then(function () {
-      fs.mkdirSync('bin');
-      fs.renameSync('build/p7zip-' + version + '/bin/7za', bin);
-      fs.unlinkSync(version + '.zip');
-      rmdir('build');
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
-}
-
-function wget(path) {
-  console.log('Downloading ' + path);
-  return new Promise(function (resolve, reject) {
-    require('node-wget')(path, function (err) {
+/**
+ * Download a file an returns its content
+ * @return {Promise<Buffer>}
+ */
+function wget(uri) {
+  console.log('Downloading ' + uri);
+  return new Promise((resolve, reject) => {
+    request({uri, encoding: null}, (err, { body }) => {
       if (err) {
         console.error('Error downloading file: ');
         console.error(err);
         return reject();
       }
-      resolve();
+      resolve(body);
     });
   });
 }
 
+/**
+ * recursive rmdir
+ */
 function rmdir(dir) {
-  var filename, i, item, len, list, stat;
-  list = fs.readdirSync(dir);
-  for (i = 0, len = list.length; i < len; i++) {
-    item = list[i];
-    filename = path.join(dir, item);
-    stat = fs.statSync(filename);
-    if (filename === "." || filename === "..") {
-
-    } else if (stat.isDirectory()) {
-      rmdir(filename);
-    } else {
-      fs.unlinkSync(filename);
+  const list = fs.readdirSync(dir);
+  for (let i = 0, len = list.length; i < len; i++) {
+    const item = list[i];
+    const filename = path.join(dir, item);
+    const stat = fs.statSync(filename);
+    if (filename !== "." && filename !== "..") {
+      if (stat.isDirectory()) {
+        rmdir(filename);
+      } else {
+        fs.unlinkSync(filename);
+      }
     }
   }
   return fs.rmdirSync(dir);
 }
 
-function make(path) {
-  return new Promise(function (resolve, reject) {
-    var make = spawn('make', {cwd: path});
+/**
+ * Build the binary
+ * @return {Promise<void>}
+ */
+function make(fullPath) {
+  return new Promise((resolve, reject) => {
+    const make = spawn('make', { cwd: fullPath });
 
-    make.stdout.on('data', function (data) {
-      console.log(data.toString());
-    });
+    make.stdout.on('data', data => console.log(data.toString()));
+    make.stderr.on('data', data => console.error(data.toString()));
 
-    make.stderr.on('data', function (data) {
-      console.error(data.toString());
-    });
-
-    make.on('exit', function (code) {
+    make.on('exit', code => {
       if (code) {
         console.error('make exited with code ' + code.toString());
         console.log('resolve the problem and re-build it using:');
@@ -82,3 +68,26 @@ function make(path) {
     });
   });
 }
+
+async function main() {
+  if (fs.existsSync(bin)) {
+    return ;
+  }
+
+  const content = await wget(url + version + '.zip');
+  console.log('Decompress ' + version + '.zip');
+
+  await decompress(content, 'build');
+  await make('build/p7zip-' + version);
+
+  fs.mkdirSync('bin');
+  fs.renameSync('build/p7zip-' + version + '/bin/7za', bin);
+  rmdir('build');
+}
+
+main()
+  .then(() => console.log('done'))
+  .catch(err => {
+    console.log(err);
+    process.exit(1);
+  });

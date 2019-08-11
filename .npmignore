@@ -2,9 +2,14 @@ bin
 node_modules
 .idea
 .gitignore
-.eslintrc
 .npmignore
 .DS_Store
-.travis.yml
 coverage
-tests
+src
+.travis.yml
+.prettierrc
+jest.json
+tsconfig.json
+tslint.json
+yarn.lock
+*.log

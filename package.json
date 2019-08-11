@@ -1,44 +1,60 @@
 {
-  "name": "p7zip",
-  "version": "3.0.0",
-  "description": "A node wrapper for 7z including latest version of 7za",
-  "main": "index.js",
-  "os" : [ "darwin", "linux" ],
-  "engines": {
-    "node": ">= 7.0.0"
-  },
-  "scripts": {
-    "test": "jest",
-    "install": "node scripts/install.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jbdemonte/node-p7zip.git"
-  },
-  "author": {
-    "name": "Jean-Baptiste DEMONTE",
-    "email": "jbdemonte@gmail.com",
-    "url": "http://jb.demonte.fr"
-  },
-  "keywords": [
-    "node",
-    "7z",
-    "7za",
-    "p7zip",
-    "7zip",
-    "wrapper",
-    "bin"
-  ],
-  "license": "MIT",
-  "dependencies": {
-    "decompress": "^4.0.0",
-    "node-wget": "^0.4.2"
-  },
-  "devDependencies": {
-    "coveralls": "^3.0.0",
-    "eslint": "^4.9.0",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.7.0",
-    "jest": "^22.4.2"
-  }
+    "name": "p7zip",
+    "version": "4.0.0",
+    "description": "A node wrapper for 7z including latest version of 7za",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "os": [
+        "darwin",
+        "linux"
+    ],
+    "engines": {
+        "node": ">= 8.0.0"
+    },
+    "scripts": {
+        "test": "jest --silent=false --config=jest.json --testRegex='/src/.*\\.test\\.ts$'",
+        "install": "node scripts/install.js",
+        "lint": "tslint -c ./tslint.json -p ./tsconfig.json -t verbose",
+        "build": "tsc -p ./tsconfig.json"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jbdemonte/node-p7zip.git"
+    },
+    "author": {
+        "name": "Jean-Baptiste DEMONTE",
+        "email": "jbdemonte@gmail.com",
+        "url": "http://jb.demonte.fr"
+    },
+    "keywords": [
+        "typescript",
+        "7z",
+        "7za",
+        "p7zip",
+        "7zip",
+        "wrapper",
+        "bin"
+    ],
+    "license": "MIT",
+    "dependencies": {
+        "decompress": "^4.0.0",
+        "request": "^2.88.0"
+    },
+    "devDependencies": {
+        "@gojob/tslint-config": "^1.0.0",
+        "@types/jest": "^24.0.17",
+        "@types/node": "^12.7.1",
+        "coveralls": "^3.0.6",
+        "jest": "^24.8.0",
+        "prettier": "^1.18.2",
+        "ts-jest": "^24.0.2",
+        "ts-node": "^8.3.0",
+        "tslint": "^5.18.0",
+        "tslint-config-prettier": "^1.18.0",
+        "tslint-plugin-prettier": "^2.0.1",
+        "typescript": "^3.5.3"
+    },
+    "pre-commit": [
+        "lint"
+    ]
 }

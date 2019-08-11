@@ -1,21 +1,21 @@
-const fn = require('../lib/list');
-const tools = require('../lib/tools');
+import { read } from './read';
+const tools = require('./binary');
 
 test('simple usage', async () => {
   tools.run = jest.fn().mockReturnValue(Promise.resolve([]));
-  await fn('archive');
+  await read('archive');
   expect(tools.run).toHaveBeenCalledWith(['l', 'archive']);
 });
 
 test('single switch', async () => {
   tools.run = jest.fn().mockReturnValue(Promise.resolve([]));
-  await fn('archive', '-a');
+  await read('archive', '-a');
   expect(tools.run).toHaveBeenCalledWith(['l', '-a', 'archive']);
 });
 
 test('multiple switches', async () => {
   tools.run = jest.fn().mockReturnValue(Promise.resolve([]));
-  await fn('archive', ['-a', '-b']);
+  await read('archive', ['-a', '-b']);
   expect(tools.run).toHaveBeenCalledWith(['l', '-a', '-b', 'archive']);
 });
 
@@ -52,7 +52,7 @@ Date      Time    Attr         Size   Compressed  Name
 `.split(/\n/);
 
   tools.run = jest.fn().mockReturnValue(Promise.resolve(lines));
-  const info = await fn('archive');
+  const info = await read('archive');
   expect(info).toMatchObject({
     path: '/Users/jbd/Super Baseball.zip',
     type: 'zip',
@@ -114,4 +114,3 @@ Date      Time    Attr         Size   Compressed  Name
     size: 12345,
   });
 });
-
