@@ -1,6 +1,6 @@
 {
     "name": "p7zip",
-    "version": "4.0.0",
+    "version": "4.1.0",
     "description": "A node wrapper for 7z including latest version of 7za",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -37,15 +37,14 @@
     ],
     "license": "MIT",
     "dependencies": {
-        "decompress": "^4.0.0",
-        "request": "^2.88.0"
+        "decompress": "^4.0.0"
     },
     "devDependencies": {
         "@gojob/tslint-config": "^1.0.0",
         "@types/jest": "^24.0.17",
-        "@types/node": "^12.7.1",
+        "@types/node": "^12.7.2",
         "coveralls": "^3.0.6",
-        "jest": "^24.8.0",
+        "jest": "^24.9.0",
         "prettier": "^1.18.2",
         "ts-jest": "^24.0.2",
         "ts-node": "^8.3.0",

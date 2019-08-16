@@ -5,7 +5,7 @@ const bin = 'bin/7za';
 const decompress = require('decompress');
 const fs = require('fs');
 const path = require('path');
-const request = require('request');
+const { get } = require('https');
 const spawn = require('child_process').spawn;
 
 /**
@@ -15,16 +15,23 @@ const spawn = require('child_process').spawn;
 function wget(uri) {
   console.log('Downloading ' + uri);
   return new Promise((resolve, reject) => {
-    request({uri, encoding: null}, (err, { body }) => {
-      if (err) {
-        console.error('Error downloading file: ');
-        console.error(err);
-        return reject();
+    get(uri, response => {
+      const { statusCode, headers } = response;
+      if (statusCode === 302) {
+        wget(headers.location)
+          .then(resolve)
+          .catch(reject)
+      } else {
+        let buffer = Buffer.alloc(0);
+        response.on('data', (chunk) => {
+          buffer = Buffer.concat([buffer, chunk]);
+        });
+        response.on('end', () => resolve(buffer));
       }
-      resolve(body);
-    });
-  });
+    }).on('error', reject);
+  })
 }
+
 
 /**
  * recursive rmdir
