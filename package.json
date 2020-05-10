@@ -1,6 +1,6 @@
 {
     "name": "p7zip",
-    "version": "4.1.0",
+    "version": "5.0.0",
     "description": "A node wrapper for 7z including latest version of 7za",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
         "linux"
     ],
     "engines": {
-        "node": ">= 8.0.0"
+        "node": ">= 10.0.0"
     },
     "scripts": {
         "test": "jest --silent=false --config=jest.json --testRegex='/src/.*\\.test\\.ts$'",
@@ -37,21 +37,21 @@
     ],
     "license": "MIT",
     "dependencies": {
-        "decompress": "^4.0.0"
+        "decompress": "^4.2.1"
     },
     "devDependencies": {
         "@gojob/tslint-config": "^1.0.0",
-        "@types/jest": "^24.0.17",
-        "@types/node": "^12.7.2",
-        "coveralls": "^3.0.6",
-        "jest": "^24.9.0",
-        "prettier": "^1.18.2",
-        "ts-jest": "^24.0.2",
-        "ts-node": "^8.3.0",
-        "tslint": "^5.18.0",
+        "@types/jest": "^25.2.1",
+        "@types/node": "^13.13.5",
+        "coveralls": "^3.1.0",
+        "jest": "^26.0.1",
+        "prettier": "^2.0.5",
+        "ts-jest": "^25.5.1",
+        "ts-node": "^8.10.1",
+        "tslint": "^6.1.2",
         "tslint-config-prettier": "^1.18.0",
-        "tslint-plugin-prettier": "^2.0.1",
-        "typescript": "^3.5.3"
+        "tslint-plugin-prettier": "^2.3.0",
+        "typescript": "^3.8.3"
     },
     "pre-commit": [
         "lint"
