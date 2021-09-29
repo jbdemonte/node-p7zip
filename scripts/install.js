@@ -64,6 +64,12 @@ function make(fullPath) {
     make.stdout.on('data', data => console.log(data.toString()));
     make.stderr.on('data', data => console.error(data.toString()));
 
+    make.on('error', error => {
+      console.log('An error has occurred: ' + error.message);
+      console.log('Ensure make is installed - on debian: sudo apt install build-essential');
+      reject(error);
+    })
+
     make.on('exit', code => {
       if (code) {
         console.error('make exited with code ' + code.toString());
@@ -94,7 +100,7 @@ async function main() {
 
 main()
   .then(() => console.log('done'))
-  .catch(err => {
-    console.log(err);
+  .catch(error => {
+    console.log(error.message || error);
     process.exit(1);
   });
